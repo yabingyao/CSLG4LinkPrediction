@@ -498,11 +498,11 @@ def to_linegraphs(batch_graphs, max_n_label):
         edge_feas = edge_fea(graph, max_n_label) / 2
         edges, feas = to_undirect(edges, edge_feas)
 
-        edges = torch.tensor(edges).long()  # 👈 确保是 int64
+        edges = torch.tensor(edges).long()  
         data = Data(edge_index=edges, edge_attr=feas)
         data.num_nodes = graph.num_nodes
 
-        data = LineGraph()(data)  # 如果这里还是报错，就可能是 edge_index 不规范
+        data = LineGraph()(data)  
 
         data['y'] = torch.tensor([graph.label])
         graphs.append(data)
